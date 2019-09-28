@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  server:
+    image: node
+    restart: always
+    build: ./server
+    networks:
+      websocket:
+        ipv4_address: 172.16.1.100
+  web:
+    image: nginx
+    restart: always
+    build: ./web
+    ports:
+      - 80:80
+    depends_on:
+      - server
+    networks:
+      websocket:
+        ipv4_address: 172.16.1.101
+
+networks:
+  websocket:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24

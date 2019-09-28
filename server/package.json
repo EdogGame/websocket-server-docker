@@ -1,0 +1,14 @@
+{
+  "name": "websocket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.1.2"
+  }
+}
+
