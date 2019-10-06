@@ -5,8 +5,6 @@ services:
     image: node
     restart: always
     build: ./server
-    ports:
-      - 8080:8080
     networks:
       app:
         ipv4_address: 172.16.100.100
@@ -19,6 +17,8 @@ services:
       - 443:443
     depends_on:
       - server
+    volumes:
+      - ./web/ssl:/etc/nginx/conf.d/ssl
     environment:
       NGINX_HOST: server.websocket-online-test.flxxyz.com
     command: /bin/sh -c "envsubst < /etc/nginx/conf.d/site.template > /etc/nginx/conf.d/site.conf && exec nginx -g 'daemon off;'"
