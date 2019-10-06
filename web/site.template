@@ -1,0 +1,12 @@
+upstream websocket {
+    server 172.16.100.100:8080;
+}
+
+server {
+    listen 80 default_server;
+    server_name $NGINX_HOST;
+
+    location / {
+        proxy_pass http://websocket;
+    }
+}

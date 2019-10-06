@@ -1,11 +1,11 @@
-FROM nginx
+FROM nginx:1.17.4-alpine
 
 WORKDIR /etc/nginx/conf.d
 
 RUN rm -rf ./*;
 
+COPY map.conf proxy.conf site.template ./
 COPY nginx.conf ../
-COPY proxy.conf ./
 
 RUN nginx -t;
 

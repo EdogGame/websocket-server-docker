@@ -5,24 +5,30 @@ services:
     image: node
     restart: always
     build: ./server
+    ports:
+      - 8080:8080
     networks:
-      websocket:
-        ipv4_address: 172.16.1.100
+      app:
+        ipv4_address: 172.16.100.100
   web:
     image: nginx
     restart: always
     build: ./web
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - server
+    environment:
+      NGINX_HOST: server.websocket-online-test.flxxyz.com
+    command: /bin/sh -c "envsubst < /etc/nginx/conf.d/site.template > /etc/nginx/conf.d/site.conf && exec nginx -g 'daemon off;'"
     networks:
-      websocket:
-        ipv4_address: 172.16.1.101
+      app:
+        ipv4_address: 172.16.100.101
 
 networks:
-  websocket:
+  app:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.16.1.0/24
+        - subnet: 172.16.100.0/24
