@@ -5,7 +5,7 @@
 ## 使用
 
 ```sh
-git clone https://github.com/EdogGame/websocket-server-docker.git && cd websocket-server-docker
+git clone https://github.com/flxxyz/websocket-server-docker.git && cd websocket-server-docker
 
 docker-compose up
 # or
@@ -22,4 +22,4 @@ docker-compose up -d
 
 
 ## 工具
-[websocket的在线测试程序](https://github.com/EdogGame/websocket-web)
+[websocket的在线测试程序](https://websocket.buger.dev/)
